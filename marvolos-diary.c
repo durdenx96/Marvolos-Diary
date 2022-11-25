@@ -16,17 +16,18 @@ void editrecord();
 void editpassword();
 void deleterecord();
 void postrecord();
-struct record();
-    {
+
+struct record
+{
     char time[6];
     char name[30];
     char place[25];
     char note[500];
 
-    };
+};
 
 int main()
-{
+{       // Initial interface, select function page.
     int ch;
     printf("\n\n\t***********************************\n");
     printf("\t*MARVOLO'S DIARY*\n");
@@ -42,10 +43,10 @@ int main()
         printf("\n\tEXIT\t\t[6]");
         printf("\n\n\tENTER YOUR CHOICE:");
         scanf("%d",&ch);
-// first use case (pun intended). Initiates the main instances of interactions with the software.
-// cases are a simpler alternative to using if else loops 
-// int ch (short for choice) is defined in the main() to interact with the objects in the cases and to scan response
-// each case houses and runs a function responsively via switch(int_name){cases}   
+        // first use case (pun intended). Initiates the main instances of interactions with the software.
+        // cases are a simpler alternative to using if else loops 
+        // int ch (short for choice) is defined in the main() to interact with the objects in the cases and to scan response
+        // each case houses and runs a function responsively via switch(int_name){cases}   
         switch(ch)
         {
         
@@ -71,20 +72,19 @@ int main()
 
         case 6:
             printf("\n\n\t\tTHANK YOU FOR USING THE SOFTWARE ");
-            scanf();
             exit(0);
         // default state is not a case
         default:
             printf("\nYOU ENTERED WRONG CHOICE..");
             printf("\nPRESS ANY KEY TO TRY AGAIN");
-            getch();
+            getchar();
             break;
         }
         system("cls");
     }
     return 0;
 }
-// function to add entry to record[e] struct
+  
 void addrecord()
 {
     system("cls");
@@ -99,7 +99,7 @@ void addrecord()
     printf("\n\n\tENTER TITLE OF YOUR ENTRY:");
     fflush(stdin);
     gets(filename);
-// searches and stages file for read or write via "options"
+    // searches and stages file for read or write via "options"
     fp = fopen (filename, "ab+" );
     if( fp==NULL )
     {
@@ -108,7 +108,7 @@ void addrecord()
         {
             printf("\nSYSTEM ERROR...");
             printf("\nPRESS ANY KEY TO EXIT");
-            getch();
+            getchar();
             return ;
 
         }
@@ -119,7 +119,7 @@ void addrecord()
         fflush(stdin);
         printf("\n\tENTER TIME: [hh:mm]:");
         scanf("%s",time);
-// rewind function to set fp file to initial state before while loop:
+        // rewind function to set fp file to initial state before while loop:
         rewind(fp);
         while(fread(&e,sizeof(e),1,fp)==1)
         {
@@ -150,9 +150,9 @@ void addrecord()
     }
     fclose(fp);
     printf("n\n\tPRESS ANY KEY TO EXIT...");
-    getch();
+    getchar();
 }
-// function to viewrecord
+
 void viewrecord()
 {
     FILE *fpte;
@@ -178,7 +178,7 @@ void viewrecord()
         {
             puts ("\nTHE TITLE DOES NOT EXIST\n");
             printf("\nPRESS ANY KEY TO EXIT...\n");
-            getch();
+            getchar();
             return;
         }
         system("cls");
@@ -230,7 +230,7 @@ void viewrecord()
     return;
 }
 
-// function to edit record()
+
 void editrecord()
 {
     system("cls");
@@ -256,7 +256,7 @@ void editrecord()
             {
                 printf("\nRECORD DOES NOT EXIST:");
                 printf("\nPRESS ANY KEY TO GO BACK");
-                getch();
+                getchar();
                 return;
             }
             while(fread(&customer, sizeof(customer), 1, fpte) ==1 )
@@ -322,7 +322,7 @@ void editrecord()
 
                         case 6:
                             printf("\nPRESS ANY KEY TO GO BACK...\n");
-                            getch();
+                            getchar();
                             return ;
                             break;
 
@@ -372,10 +372,10 @@ void editrecord()
         else
             printf("\nNO FILES EDITED...\n");
         printf("\tPRESS ENTER TO EXIT EDITING MENU.");
-        getch();
+        getchar();
     }
 
-// password function
+
 int password()
 {
     char pass[15]= {0},check[15]= {0},ch;
@@ -387,7 +387,7 @@ int password()
     {
         i=0;
         printf("\n\n\tENTER THE PASSWORD:");
-        pass[0]=getch();
+        pass[0]=getchar();
         while(pass[i]!='\r')
         {
             if(pass[i]=='\b')
@@ -396,13 +396,13 @@ int password()
                 printf("\b");
                 printf(" ");
                 printf("\b");
-                pass[i]=getch();
+                pass[i]=getchar();
             }
             else
             {
                 printf("*");
                 i++;
-                pass[i]=getch();
+                pass[i]=getchar();
             }
 
         }
@@ -411,7 +411,7 @@ int password()
         if (fpp==NULL)
             {
                 printf("\nERROR WITH THE SYSTEM FILE...[FILE MISSING]\n");
-                getch();
+                getchar();
                 return 1;
             }
         else
@@ -438,11 +438,11 @@ int password()
         }
     }
     printf("\n\n\t::YOU ENTERED WRONG PASSWORD::YOU ARE NOT ALLOWED TO ACCESS ANY FILE::\n\n\tPRESS ANY KEY TO GO BACK...");
-    getch();
+    getchar();
     return 1;
 }
 
-// edit password function    
+  
 void editpassword()
 {
     system("cls");
@@ -457,12 +457,12 @@ void editpassword()
         if(fp==NULL)
         {
             printf("SYSTEM ERROR...");
-            getch();
+            getchar();
             return ;
         }
         fclose(fp);
         printf("\nSYSTEM RESTORED...\nYOUR PASSWORD IS 'ENTER'\n PRESS ENTER TO CHANGE PASSWORD\n\n");
-        getch();
+        getchar();
     }
     fclose(fp);
     check=password();
@@ -478,7 +478,7 @@ void editpassword()
             choice=0;
             printf("\n\n\tENTER THE NEW PASSWORD:");
             fflush(stdin);
-            pass[0]=getch();
+            pass[0]=getchar();
             while(pass[i]!='\r')
             {
                 if(pass[i]=='\b')
@@ -487,19 +487,19 @@ void editpassword()
                     printf("\b");
                     printf(" ");
                     printf("\b");
-                    pass[i]=getch();
+                    pass[i]=getchar();
                 }
                 else
                 {
                     printf("*");
                     i++;
-                    pass[i]=getch();
+                    pass[i]=getchar();
                 }
             }
             pass[i]='\0';
             i=0;
             printf("\n\tCONFIRM PASSWORD:");
-            confirm[0]=getch();
+            confirm[0]=getchar();
             while(confirm[i]!='\r')
             {
                 if(confirm[i]=='\b')
@@ -508,13 +508,13 @@ void editpassword()
                     printf("\b");
                     printf(" ");
                     printf("\b");
-                    confirm[i]=getch();
+                    confirm[i]=getchar();
                 }
                 else
                 {
                     printf("*");
                     i++;
-                    confirm[i]=getch();
+                    confirm[i]=getchar();
                 }
             }
             confirm[i]='\0';
@@ -524,7 +524,7 @@ void editpassword()
                 if(fp==NULL)
                 {
                     printf("\n\t\tSYSTEM ERROR");
-                    getch();
+                    getchar();
                     return ;
                 }
                 i=0;
@@ -546,10 +546,10 @@ void editpassword()
     }
     while(choice==1);
     printf("\n\n\tPASSWORD CHANGED...\n\n\tPRESS ANY KEY TO GO BACK...");
-    getch();
+    getchar();
 }
 
-// delete function    
+  
 void deleterecord( )
 {
     system("cls");
@@ -585,7 +585,7 @@ void deleterecord( )
                 {
                     printf("\nTHE FILE DOES NOT EXISTS");
                     printf("\nPRESS ANY KEY TO GO BACK.");
-                    getch();
+                    getchar();
                     return ;
                 }
                 fclose(fp);
@@ -602,7 +602,7 @@ void deleterecord( )
                 {
                     printf("\nTHE FILE DOES NOT EXISTS");
                     printf("\nPRESS ANY KEY TO GO BACK.");
-                    getch();
+                    getchar();
                     return ;
                 }
                 fptr=fopen("temp","wb");
@@ -610,7 +610,7 @@ void deleterecord( )
                 {
                     printf("\nSYSTEM ERROR");
                     printf("\nPRESS ANY KEY TO GO BACK");
-                    getch();
+                    getchar();
                     return ;
                 }
                 printf("\n\tENTER THE TIME OF RECORD TO BE DELETED:[hh:mm]:");
@@ -638,5 +638,5 @@ void deleterecord( )
         scanf("%c",&another);
     }
     printf("\n\n\tPRESS ANY KEY TO EXIT...");
-    getch();
+    getchar();
 }
