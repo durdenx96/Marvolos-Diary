@@ -30,7 +30,7 @@ int main()
 {       // Initial interface, select function page.
     int ch;
     printf("\n\n\t***********************************\n");
-    printf("\t*MARVOLO'S DIARY*\n");
+    printf("\t*MARVOLO'S DIARY 01*\n");
     printf("\t***********************************");
     while(1)
     {
@@ -373,8 +373,7 @@ void editrecord()
             printf("\nNO FILES EDITED...\n");
         printf("\tPRESS ENTER TO EXIT EDITING MENU.");
         getchar();
-    }
-
+}
 
 int password()
 {
@@ -388,7 +387,7 @@ int password()
         i=0;
         printf("\n\n\tENTER THE PASSWORD:");
         pass[0]=getchar();
-        while(pass[i]!='\r')
+        while(pass[i]!='\n')
         {
             if(pass[i]=='\b')
             {
@@ -403,18 +402,19 @@ int password()
                 printf("*");
                 i++;
                 pass[i]=getchar();
-            }
+             }
 
         }
         pass[i]='\0';
         fpp=fopen("SE","r");
         if (fpp==NULL)
             {
-                printf("\nERROR WITH THE SYSTEM FILE...[FILE MISSING]\n");
+                printf("\nERROR WITH THE SYSTEM FILE...[FILE       MISSING]\n");
                 getchar();
                 return 1;
             }
         else
+        {
             i=0;
             while(1)
             {
@@ -426,18 +426,19 @@ int password()
                 }
             check[i]=ch-5;
             i++;
-        }
-        if(strcmp(pass,check)==0)
+            }
+        }    
+       if(strcmp(pass,check)==0)
         {
             printf("\n\n\tACCESS GRANTED...\n");
             return 0;
         }
         else
         {
-            printf("\n\n\tWRONG PASSWORD..\n\n\tACCESS DENIED...\n");
+            printf("\n\n\tWRONG PASSWORD..\n\n\tACCESS  DENIED...\n");
         }
     }
-    printf("\n\n\t::YOU ENTERED WRONG PASSWORD::YOU ARE NOT ALLOWED TO ACCESS ANY FILE::\n\n\tPRESS ANY KEY TO GO BACK...");
+    printf("\n\n\t::YOU ENTERED WRONG PASSWORD::YOU ARE NOT  ALLOWED     TO ACCESS ANY FILE::\n\n\tPRESS ANY KEY TO GO  BACK...");
     getchar();
     return 1;
 }
@@ -479,7 +480,7 @@ void editpassword()
             printf("\n\n\tENTER THE NEW PASSWORD:");
             fflush(stdin);
             pass[0]=getchar();
-            while(pass[i]!='\r')
+            while(pass[i]!='\n')
             {
                 if(pass[i]=='\b')
                 {
@@ -500,7 +501,7 @@ void editpassword()
             i=0;
             printf("\n\tCONFIRM PASSWORD:");
             confirm[0]=getchar();
-            while(confirm[i]!='\r')
+            while(confirm[i]!='\n')
             {
                 if(confirm[i]=='\b')
                 {
